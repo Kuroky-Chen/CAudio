@@ -1,6 +1,6 @@
 {
   "name": "caudio",
-  "version": "1.0.0",
+  "version": "1.1.1",
   "description": "audio plugin",
   "main": "index.js",
   "scripts": {
@@ -14,5 +14,8 @@
     "audio"
   ],
   "author": "Kuroky",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "terser": "^5.19.2"
+  }
 }
