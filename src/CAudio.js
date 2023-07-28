@@ -24,7 +24,7 @@ class CAudio {
 
       const signal = this.controller.signal;
 
-      fetch(this.apiUrl + this.params.toString(), {
+      fetch(this.apiUrl + '?' + this.params.toString(), {
         headers,
         signal
       })
@@ -35,7 +35,7 @@ class CAudio {
 
           const reader = response.body.getReader();
 
-          function read() {
+          const read = () => {
             reader.read().then(({ done, value }) => {
               if (done) {
                 console.log("The audio stream transmission is complete.");
