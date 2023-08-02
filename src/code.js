@@ -98,7 +98,7 @@ class CAudio {
     try {
       this.player.pause()
       this.controller.abort();
-    }catch{err} {
+    }catch(err) {
       console.warn(err)
     }
 
