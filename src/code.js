@@ -23,6 +23,7 @@ class CAudio {
   }
 
   play() {
+    const self = this;
     try {
       const headers = new Headers();
       headers.append("Authorization", this.token);
@@ -70,9 +71,9 @@ class CAudio {
                   for (let i = 0; i < data.length; i++) {
                     buffer[bufferIndex] = data[i];
                     bufferIndex++;
-                    if (bufferIndex >= this.bufferSize) {
+                    if (bufferIndex >= self.bufferSize) {
                       // 缓冲区已满，可以进行播放操作
-                      this.player.feed(buffer);
+                      self.player.feed(buffer);
                       // 重置缓冲区索引
                       bufferIndex = 0;
                     }
