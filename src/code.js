@@ -59,7 +59,7 @@ class CAudio {
         return new Response(
           new ReadableStream({
             start(controller) {
-              function read() {
+              const read = () => {
                 return reader.read().then(({ done, value }) => {
                   if (done) {
                     controller.close();
