@@ -1,7 +1,7 @@
 ````markdown
 # CAudio
 
-A plugin that handles real-time audio streaming data from API endpoints, including frame interpolation and playback.
+A real-time audio streaming plugin that automatically handles data loss, with support for HTTP.
 
 ## Installation
 
@@ -20,15 +20,6 @@ import CAudio from "caudio";
 ```
 
 
-you can use **CommonJS** syntax:
-
-```javascript
-const CAudio = require("caudio");
-```
-
-
-
-
 ## Example
 
 ```javascript
@@ -42,7 +33,7 @@ const CAudio = new CAudio({
   frameMethod: 'empty'
 });
 
-CAudio.start();
+CAudio.play();
 
 CAudio.stop();
 
