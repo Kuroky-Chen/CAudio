@@ -30,7 +30,10 @@ const CAudio = new CAudio({
   token: 'yourToken',  // 请求token
   inputCodec： 'Int16',  // 采样编码方式
   sampleRate: 16000,   // 采样率
-  bufferSize: 16000,  // 音频帧的缓冲区大小
+  bufferSize: 6400,  // 缓冲池音频片段播放大小
+  bufferFirstWaitTime: 1000, // 缓冲池第一次等待时间
+  bufferIntervalWaitTime: 500, // 缓冲池后续始等待时间
+  bufferIntervalPlayTime: 200, // 缓冲池音频片段播放时间
   volume: 1, // 音频声音大小
   flushTime: 200, // 缓冲区刷新时间
   channels: 1  // 声道数

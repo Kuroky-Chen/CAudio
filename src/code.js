@@ -31,8 +31,28 @@ class CAudio {
 
       const signal = this.controller.signal;
 
-      const buffer = new Uint8Array(this.bufferSize);
-      let bufferIndex = 0;
+      // const buffer = new Uint8Array(this.bufferSize);
+      // let bufferIndex = 0;
+      const bufferPool = [];
+      let timer;
+
+      function timerInit(time) {
+        setTimeout(() => {
+          timer = setInterval(() => {
+            onPlay();
+          }, 200);
+        }, time);
+      }
+
+      function onPlay() {
+        if (bufferPool.length > 6400) {
+          const temp = bufferPool.splice(0, 6400);
+          self.player.feed(new Uint8Array(temp));
+        } else {
+          clearInterval(timer);
+          timerInit(5000);
+        }
+      }
 
       fetch(this.apiUrl + '?' + this.params.toString(), {
         headers,
@@ -67,17 +87,19 @@ class CAudio {
                     return;
                   }
                   // 处理每次获取的数据流（value），大小为不定
-                  const data = new Uint8Array(value.buffer);
-                  for (let i = 0; i < data.length; i++) {
-                    buffer[bufferIndex] = data[i];
-                    bufferIndex++;
-                    if (bufferIndex >= self.bufferSize) {
-                      // 缓冲区已满，可以进行播放操作
-                      self.player.feed(buffer);
-                      // 重置缓冲区索引
-                      bufferIndex = 0;
-                    }
-                  }
+                  // const data = new Uint8Array(value.buffer);
+                  // for (let i = 0; i < data.length; i++) {
+                  //   buffer[bufferIndex] = data[i];
+                  //   bufferIndex++;
+                  //   if (bufferIndex >= self.bufferSize) {
+                  //     // 缓冲区已满，可以进行播放操作
+                  //     self.player.feed(buffer);
+                  //     // 重置缓冲区索引
+                  //     bufferIndex = 0;
+                  //   }
+                  // }
+                  const normalArr = Array.from(value);
+                  bufferPool.push(...normalArr);
                   return read();
                 });
               }
