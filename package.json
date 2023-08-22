@@ -1,6 +1,6 @@
 {
   "name": "caudio",
-  "version": "2.5.0",
+  "version": "3.0.0",
   "description": "A real-time audio streaming plugin that automatically handles data loss, with support for HTTP",
   "main": "index.js",
   "scripts": {
