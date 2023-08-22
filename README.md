@@ -22,6 +22,8 @@ import CAudio from "caudio";
 
 ## Example
 
+Please use non-reactive.
+
 ```javascript
 const CAudio = new CAudio({
   url: '/api/xxx',  // 请求地址
